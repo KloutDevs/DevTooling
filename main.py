@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from colorama import init, Fore, Style
 import questionary
 
@@ -7,52 +8,92 @@ import questionary
 init(autoreset=True)
 directorios_ignorar = []
 proyecto_tipo = None
-
+# -------------------- Carga de reglas de detección --------------------
+def cargar_reglas_deteccion():
+    try:
+        with open('detection_rules.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data['rules']
+    except FileNotFoundError:
+        print(f"{Fore.RED}Error: No se encontró el archivo detection_rules.json")
+        sys.exit(1)
+    except json.JSONDecodeError:
+        print(f"{Fore.RED}Error: El archivo detection_rules.json tiene un formato inválido")
+        sys.exit(1)
+# -------------------- Carga de reglas de ignorados --------------------
+def cargar_reglas_ignorar():
+    try:
+        with open('ignore_rules.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data['rules']
+    except FileNotFoundError:
+        print(f"{Fore.RED}Error: No se encontró el archivo ignore_rules.json")
+        sys.exit(1)
+    except json.JSONDecodeError:
+        print(f"{Fore.RED}Error: El archivo ignore_rules.json tiene un formato inválido")
+        sys.exit(1)
 # -------------------- Lógica de detección de proyectos --------------------
 def detectar_tipo_proyecto(ruta):
-    detectores = [
-        ('svelte', ['svelte.config.js']),
-        ('nextjs', ['next.config.js']),
-        ('node', ['package.json']),
-        ('bun', ['bun.lockb']),
-        ('yarn', ['yarn.lock']),
-        ('python', ['requirements.txt', 'pyproject.toml', 'setup.py']),
-        ('vue', ['vue.config.js']),
-        ('react', ['tsconfig.json', 'react.config.js']),
-        ('django', ['manage.py']),
-        ('flask', ['app.py', 'wsgi.py']),
-        ('angular', ['angular.json']),
-        ('dotnet', ['*.csproj', '*.sln']),
-        ('java', ['pom.xml', 'build.gradle']),
-        ('rust', ['Cargo.toml']),
-        ('go', ['go.mod'])
-    ]
+    # Definimos una función auxiliar para verificar archivos
+    def tiene_archivo(archivos):
+        return any(os.path.exists(os.path.join(ruta, archivo)) for archivo in archivos)
 
-    for tipo, archivos in detectores:
-        for archivo in archivos:
-            if os.path.exists(os.path.join(ruta, archivo)):
-                return tipo
-    return 'otro'
+    # Cargamos las reglas desde el archivo JSON
+    reglas_deteccion = cargar_reglas_deteccion()
 
-def actualizar_ignorados(tipo_proyecto):
+    # Ordenamos las reglas por prioridad
+    reglas_deteccion.sort(key=lambda x: x['prioridad'])
+
+    # Detectamos todos los tipos que aplican
+    tipos_detectados = set()
+    
+    for regla in reglas_deteccion:
+        if tiene_archivo(regla['archivos']):
+            tipos_detectados.add(regla['tipo'])
+            # Agregamos las tecnologías implicadas
+            if 'implica' in regla:
+                tipos_detectados.update(regla['implica'])
+
+    if not tipos_detectados:
+        return 'otro'
+    
+    # Retornamos el tipo principal (el de mayor prioridad)
+    for regla in reglas_deteccion:
+        if regla['tipo'] in tipos_detectados:
+            return regla['tipo']
+        
+def actualizar_ignorados(ruta):
     global directorios_ignorar
-    reglas = {
-        'node': ['node_modules', 'dist', 'build'],
-        'svelte': ['.svelte-kit', 'node_modules', 'build'],
-        'nextjs': ['.next', 'node_modules'],
-        'python': ['__pycache__', 'venv'],
-        'vue': ['node_modules', 'dist', '.nuxt'],
-        'react': ['node_modules', 'build', '.next'],
-        'django': ['db.sqlite3', 'staticfiles'],
-        'flask': ['__pycache__', 'venv'],
-        'angular': ['node_modules', 'dist', '.nuxt'],
-        'dotnet': ['bin', 'obj'],
-        'java': ['target', '.gradle'],
-        'rust': ['target', '.cargo'],
-        'go': ['.git'],
-        'otro': []
-    }
-    directorios_ignorar = reglas.get(tipo_proyecto, [])
+    reglas = cargar_reglas_ignorar()
+    
+    # Obtenemos todos los tipos detectados
+    def detectar_todos_tipos(ruta):
+        def tiene_archivo(archivos):
+            return any(os.path.exists(os.path.join(ruta, archivo)) for archivo in archivos)
+
+        reglas_deteccion = cargar_reglas_deteccion()
+        tipos_detectados = set()
+        
+        for regla in reglas_deteccion:
+            if tiene_archivo(regla['archivos']):
+                tipos_detectados.add(regla['tipo'])
+                # Agregamos las tecnologías implicadas
+                if 'implica' in regla:
+                    tipos_detectados.update(regla['implica'])
+        
+        return tipos_detectados
+
+    # Detectamos todos los tipos presentes en el proyecto
+    tipos_detectados = detectar_todos_tipos(ruta)
+    
+    # Acumulamos todos los directorios a ignorar basados en los tipos detectados
+    directorios_ignorar = set()
+    for tipo in tipos_detectados:
+        if tipo in reglas:
+            directorios_ignorar.update(reglas[tipo])
+    
+    # Convertimos el set de vuelta a lista
+    directorios_ignorar = list(directorios_ignorar)
 # -------------------- Lógica de visualización corregida --------------------
 def mostrar_estructura(ruta, prefijo="", es_ultimo=True, permitidos=None, nivel=0):
     if not os.path.exists(ruta):
@@ -112,8 +153,9 @@ def menu():
             ruta = input(f"{Fore.WHITE}Ruta del proyecto: ").strip()
             if os.path.exists(ruta):
                 proyecto_tipo = detectar_tipo_proyecto(ruta)
-                actualizar_ignorados(proyecto_tipo)
-                print(f"{Fore.CYAN}[Detectado: {proyecto_tipo.upper()}]")
+                actualizar_ignorados(ruta)  # Ahora pasamos la ruta en lugar del tipo
+                print(f"{Fore.CYAN}[Tipo de Proyecto detectado: {proyecto_tipo.upper()}]")
+                print(f"{Fore.CYAN}[Ignorando: {', '.join(directorios_ignorar)}]")  # Añadimos esto para ver qué se ignora
                 mostrar_estructura(ruta, permitidos=[])
             else:
                 print(f"{Fore.RED}✖ Ruta inválida")

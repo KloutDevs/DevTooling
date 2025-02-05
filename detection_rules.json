@@ -1,0 +1,82 @@
+{
+    "rules": [
+      {
+        "tipo": "svelte",
+        "archivos": ["svelte.config.js"],
+        "prioridad": 1,
+        "implica": ["node"]
+      },
+      {
+        "tipo": "nextjs",
+        "archivos": ["next.config.js"],
+        "prioridad": 1,
+        "implica": ["react", "node"]
+      },
+      {
+        "tipo": "vue",
+        "archivos": ["vue.config.js"],
+        "prioridad": 1,
+        "implica": ["node"]
+      },
+      {
+        "tipo": "react",
+        "archivos": ["react.config.js"],
+        "prioridad": 2,
+        "implica": ["node"]
+      },
+      {
+        "tipo": "angular",
+        "archivos": ["angular.json"],
+        "prioridad": 1,
+        "implica": ["node"]
+      },
+      {
+        "tipo": "django",
+        "archivos": ["manage.py"],
+        "prioridad": 1,
+        "implica": ["python"]
+      },
+      {
+        "tipo": "flask",
+        "archivos": ["app.py", "wsgi.py"],
+        "prioridad": 2,
+        "implica": ["python"]
+      },
+      {
+        "tipo": "python",
+        "archivos": ["requirements.txt", "pyproject.toml", "setup.py"],
+        "prioridad": 3
+      },
+      {
+        "tipo": "node",
+        "archivos": ["package.json"],
+        "prioridad": 4
+      },
+      {
+        "tipo": "bun",
+        "archivos": ["bun.lockb"],
+        "prioridad": 3,
+        "implica": ["node"]
+      },
+      {
+        "tipo": "dotnet",
+        "archivos": ["*.csproj", "*.sln"],
+        "prioridad": 1
+      },
+      {
+        "tipo": "java",
+        "archivos": ["pom.xml", "build.gradle"],
+        "prioridad": 1
+      },
+      {
+        "tipo": "rust",
+        "archivos": ["Cargo.toml"],
+        "prioridad": 1
+      },
+      {
+        "tipo": "go",
+        "archivos": ["go.mod"],
+        "prioridad": 1
+      }
+    ]
+  }

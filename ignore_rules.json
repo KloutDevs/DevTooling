@@ -1,0 +1,18 @@
+{
+    "rules": {
+      "node": ["node_modules", "dist", "build"],
+      "svelte": [".svelte-kit", "build"],
+      "nextjs": [".next", "node_modules"],
+      "python": ["__pycache__", "venv"],
+      "vue": ["node_modules", "dist", ".nuxt"],
+      "react": ["node_modules", "build", ".next"],
+      "django": ["db.sqlite3", "staticfiles"],
+      "flask": ["__pycache__", "venv"],
+      "angular": ["node_modules", "dist", ".nuxt"],
+      "dotnet": ["bin", "obj"],
+      "java": ["target", ".gradle"],
+      "rust": ["target", ".cargo"],
+      "go": [".git"],
+      "otro": []
+    }
+  }
