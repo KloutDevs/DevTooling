@@ -17,13 +17,20 @@ class Banner:
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def _create_banner_text(self) -> str:
-        """Creates the banner text using figlet."""
+        """Crea el texto del banner."""
         try:
-            figlet = pyfiglet.Figlet(font='slant')
-            return figlet.renderText('DevTooling CLI')
+            # Now we use an ASCII art banner instead of pyfiglet
+            return """
+ ____              _____           _ _             
+|  _ \  _____   _|_   _|__   ___ | (_)_ __   __ _ 
+| | | |/ _ \ \ / / | |/ _ \ / _ \| | | '_ \ / _` |
+| |_| |  __/\ V /  | | (_) | (_) | | | | | | (_| |
+|____/ \___| \_/   |_|\___/ \___/|_|_|_| |_|\__, |
+                                            |___/ 
+"""
         except Exception as e:
             self.logger.error(f"Error creating banner: {str(e)}")
-            return "DevTooling CLI"  # Fallback
+            return "DevTooling CLI"  # Fallback simple
 
     def show(self):
         """Shows the banner with animation."""
