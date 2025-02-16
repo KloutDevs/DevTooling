@@ -1,109 +1,151 @@
 # DevTooling CLI
 
-Una herramienta de línea de comandos potente para análisis y gestión de proyectos de desarrollo.
+DevTooling CLI is an advanced command-line tool for project analysis and development management.
 
-## 🚀 Características Actuales
+## 🚀 Features
 
-- **Detección Inteligente de Proyectos**
-  - Identificación automática del tipo de proyecto
-  - Soporte para múltiples frameworks y tecnologías
-  - Sistema de detección basado en reglas configurables
+- **Smart Project Detection**
+  - Automatic project type detection
+  - Support for multiple frameworks and technologies
+  - System of detection based on configurable rules
 
-- **Visualización de Estructura**
-  - Árbol de directorios interactivo
-  - Filtrado inteligente de archivos y carpetas
-  - Personalización de visualización
+- **Visualization of Structure**
+  - Interactive directory tree
+  - Smart filtering of files and folders
+  - Customizable visualization
 
 ## 🎯 Roadmap
 
-### Fase 1: Análisis de Dependencias
-- [ ] Escaneo de dependencias desactualizadas
-- [ ] Detección de vulnerabilidades
-- [ ] Análisis de tamaño de dependencias
-- [ ] Visualización de árbol de dependencias
+### Stage 1: Dependencies Scanning
+- [ ] Detect outdated dependencies
+- [ ] Detect vulnerabilities
+- [ ] Analyze dependency sizes
+- [ ] Visualize dependency tree
 
-### Fase 2: Integración con Git
-- [ ] Estado del repositorio
-- [ ] Gestión de branches
-- [ ] Historial de commits
-- [ ] Generación automática de .gitignore
-- [ ] Estadísticas de contribuciones
+### Stage 2: Integration with Git
+- [ ] View repository status
+- [ ] Manage branches
+- [ ] View commit history
+- [ ] Generate .gitignore automatically
+- [ ] Contribution statistics
+- [ ] Pull request statistics
+- [ ] Initialice a new repository tool
 
-### Fase 3: Análisis de Código
-- [ ] Contador de líneas por lenguaje
-- [ ] Detección de código duplicado
-- [ ] Análisis de complejidad
-- [ ] Estadísticas del proyecto
-- [ ] Sugerencias de mejoras
+### Stage 3: Code Analysis
+- [ ] Count lines per language
+- [ ] Detect duplicated code
+- [ ] Analyze complexity
+- [ ] Project statistics
+- [ ] Suggestions for improvements
 
-### Fase 4: Gestión de Scripts
-- [ ] Detección de scripts disponibles
-- [ ] Ejecución integrada
-- [ ] Atajos personalizables
-- [ ] Gestión de tareas recurrentes
+### Stage 4: Gestión de Scripts
+- [ ] Detect available scripts
+- [ ] Integrated execution
+- [ ] Customizable shortcuts
+- [ ] Concurrent task management
 
-### Fase 5: Herramientas de Desarrollo
-- [ ] Generación de componentes
-- [ ] Validación de estructura
-- [ ] Gestión de configuraciones
-- [ ] Templates personalizables
+### Stage 5: Development Tools
+- [ ] Generate components from templates
+- [ ] Validate project structure
+- [ ] Manage configurations
+- [ ] Customizable templates
 
-### Fase 6: Docker Integration
-- [ ] Análisis de configuraciones
-- [ ] Optimización de Dockerfiles
-- [ ] Gestión de contenedores
-- [ ] Validación de mejores prácticas
+### Stage 6: Docker Integration
+- [ ] Analyze configurations
+- [ ] Optimize Dockerfiles
+- [ ] Containers management
+- [ ] Validate best practices
 
-### Fase 7: Testing y Calidad
-- [ ] Ejecución de tests
-- [ ] Reportes de cobertura
-- [ ] Integración con linters
-- [ ] Métricas de calidad
+### Stage 7: Testing and Quality
+- [ ] Run tests
+- [ ] Coverage reports
+- [ ] Integration with linters
+- [ ] Quality metrics
 
-### Fase 8: Documentación
-- [ ] Generación automática de docs
-- [ ] Actualización de README
-- [ ] Diagramas y visualizaciones
-- [ ] Templates de documentación
+### Stage 8: Documentación
+- [ ] Automatic documentation generation
+- [ ] Update README
+- [ ] Diagrams and visualizations
+- [ ] Documentation templates
 
-### Fase 9: Gestión de Entorno
-- [ ] Gestión de variables de entorno
-- [ ] Validación de configuraciones
-- [ ] Comparación de entornos
-- [ ] Plantillas de configuración
+### Stage 9: Gestión de Entorno
+- [ ] Environment management
+- [ ] Configuration validation
+- [ ] Environment comparison
+- [ ] Configuration templates
 
-## 🛠️ Instalación
+## 🛠️ Installation
+
+### Option 1: Using the Executable (Recommended)
+Download the latest release for your operating system:
+
 
 ```bash
-# Próximamente
+# Windows
+Download devtool.exe from the latest release
+
+# Linux/MacOS
+Download devtool from the latest release
+chmod +x devtool  # Make it executable
 ```
 
-## 📖 Uso
+### Option 2: Using pip
 
 ```bash
-# Próximamente
+# Install globally
+pip install devtooling-cli
+
+# Or install in a virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Linux/MacOS
+.venv\Scripts\activate     # Windows
+pip install devtooling-cli
 ```
 
-## 🤝 Contribución
+### Option 3: From Source
 
-Las contribuciones son bienvenidas. Por favor, lee las guías de contribución antes de empezar
+```bash
+# Clone the repository
+git clone https://github.com/KloutDevs/DevTooling.git
+cd DevTooling
 
-## 📝 Configuración
+# Install dependencies
+pip install -r requirements.txt
 
-La herramienta utiliza archivos JSON para su configuración:
+# Install the package
+pip install .
+```
 
-### detection_rules.json
+## 📖 Use
 
-Define las reglas para detectar tipos de proyectos y sus dependencias.
+### Basic Usage
 
-### ignore_rules.json
+```bash
+# Launch DevTooling CLI
+devtool
 
-Configura los patrones de archivos y directorios a ignorar según el tipo de proyecto.
+# Or if installed from source
+python -m devtool
+```
 
-## 📜 Licencia
+## 📝 Configuration
 
-Sin licencia de momento.
+The tool will automatically detect your project type and apply appropriate filters. You can customize the detection rules by modifying:
 
-## 🔄 Estado del Proyecto
+```bash
+#Define the rules to detect project types and their dependencies, #and the files and directories to ignore based on the project type.
 
-Desarrollado con ❤️ por KloutDevs.
+config/detection_rules.json
+```
+
+## 🤝 Contributing
+
+The contributions are welcome. Please read the contribution guide before starting.
+
+## 📜 License
+
+MIT License.
+
+## 🔄 Project Status
+
+Developed with ❤️ by KloutDevs.
