@@ -1,45 +1,5 @@
 {
   "folders": [
-    {
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos",
-      "low_level": true
-    }
   ],
-  "projects": {
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\DevTooling": {
-      "name": "DevTooling",
-      "type": "git",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\DevTooling"
-    },
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\Eliana": {
-      "name": "Eliana",
-      "type": "git",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\Eliana"
-    },
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\Galderma": {
-      "name": "Galderma",
-      "type": "svelte",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\Galderma"
-    },
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\KloutDevs": {
-      "name": "KloutDevs",
-      "type": "git",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\KloutDevs"
-    },
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\platzi-path-searcher": {
-      "name": "platzi-path-searcher",
-      "type": "git",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\platzi-path-searcher"
-    },
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\todo-app-simple": {
-      "name": "todo-app-simple",
-      "type": "git",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\todo-app-simple"
-    },
-    "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\valentineDay": {
-      "name": "valentineDay",
-      "type": "git",
-      "path": "C:\\Users\\Nahuel\\Desktop\\Nahuel\\Proyectos\\valentineDay"
-    }
-  }
+  "projects": {}
 }

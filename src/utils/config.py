@@ -24,4 +24,4 @@ def save_config(filename: str, data: Dict[str, Any]):
         json.dump(data, f, indent=2)
 
 def get_version() -> str:
-    return "0.2.1"
+    return "0.2.5"
