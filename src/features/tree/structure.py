@@ -51,23 +51,43 @@ class TreeVisualizer:
 
             name = os.path.basename(path)
 
+            # If we are in the root level and there are allowed directories
+            if level == 0 and allowed:
+                # Show only the root
+                self.console.print(f"{prefix}[cyan]{name}/[/cyan]")
+
+                # Process only the allowed directories
+                items = [d for d in allowed if os.path.isdir(os.path.join(path, d))]
+                items.sort()
+
+                # Show each allowed directory
+                for idx, item in enumerate(items):
+                    is_last_item = idx == len(items) - 1
+                    item_path = os.path.join(path, item)
+                    self.show_structure(
+                        item_path,
+                        prefix + "    ",
+                        is_last_item,
+                        None,
+                        level + 1,
+                        show_all
+                    )
+                return
+
             # Verify if should be ignored
             if not show_all and any(ignore_dir in name for ignore_dir in self.ignored_dirs):
                 return
 
-            # Filter if necessary
-            if allowed and level == 0 and name not in allowed:
-                return
-
-            # Show current element
-            if os.path.isdir(path):
-                self.console.print(
-                    f"{prefix}{'└── ' if is_last else '├── '}[cyan]{name}/[/cyan]"
-                )
-            else:
-                self.console.print(
-                    f"{prefix}{'└── ' if is_last else '├── '}[yellow]{name}[/yellow]"
-                )
+            # Show current element (for non-root levels)
+            if level > 0:
+                if os.path.isdir(path):
+                    self.console.print(
+                        f"{prefix}{'└── ' if is_last else '├── '}[cyan]{name}/[/cyan]"
+                    )
+                else:
+                    self.console.print(
+                        f"{prefix}{'└── ' if is_last else '├── '}[yellow]{name}[/yellow]"
+                    )
 
             # Process subdirectories
             if os.path.isdir(path):
@@ -76,7 +96,7 @@ class TreeVisualizer:
                     os.listdir(path),
                     key=lambda x: (not os.path.isdir(os.path.join(path, x)), x)
                 )
-                
+
                 # Filter ignored elements
                 if not show_all:
                     items = [i for i in items if i not in self.ignored_dirs]
@@ -92,7 +112,7 @@ class TreeVisualizer:
                         item_path,
                         new_prefix,
                         is_last_item,
-                        allowed,
+                        None,
                         level + 1,
                         show_all
                     )
