@@ -34,7 +34,8 @@ class Logger:
         console_handler = RichHandler(
             rich_tracebacks=True,
             markup=True,
-            show_time=False
+            show_time=False,
+            level=logging.WARNING
         )
         console_handler.setLevel(logging.INFO)
         

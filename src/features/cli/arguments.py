@@ -1,7 +1,7 @@
 import argparse
 from typing import Optional
 from ...utils.config import get_version
-from .handlers import handle_structure_command
+from .handlers import handle_structure_command, handle_projects_command, handle_go_command
 
 def parse_args():
     """Parse command line arguments."""
@@ -14,13 +14,30 @@ def parse_args():
   Interactive mode:
     devtool
 
-  Command line mode:
-    devtool structure [--mode MODE] [PATH]
+  Command line guide: () optional, [] required
+
+  Structure commands:
+    devtool structure --mode [MODE] [PROJECTS_PATH]
+
+    Examples:
+      devtool structure --mode automatic ./my-project
+      devtool structure --mode manual .
+      devtool structure --mode complete /path/to/project
+
+  Projects commands:
+    devtool projects --folders-add [PROJECTS_PATH] (--low-level)
+    devtool projects --folders-remove [PROJECTS_PATH]
+    devtool projects --list
+    devtool projects --refresh-folders
+    devtool projects --go [PROJECT_NAME]
     
-  Examples:
-    devtool structure --mode automatic ./my-project
-    devtool structure --mode manual .
-    devtool structure --mode complete /path/to/project
+    Examples:
+      devtool projects --folders-add ./projects 
+      devtool projects --folders-add ./projects --low-level
+      devtool projects --folders-remove ./projects
+      devtool projects --list
+      devtool projects --refresh-folders
+      devtool projects --go my-react-project
         """
     )
 
@@ -60,6 +77,59 @@ def parse_args():
         default='.',
         help='Project path to analyze (default: current directory)'
     )
+    
+    # Projects command
+    projects_parser = subparsers.add_parser(
+        'projects',
+        help='Manage project folders and navigation'
+    )
+    
+    projects_parser.add_argument(
+        '--folders-add',
+        metavar='PATH',
+        help='Add a folder to watch for projects'
+    )
+    
+    projects_parser.add_argument(
+        '--low-level',
+        action='store_true',
+        help='Scan only root and first level directories'
+    )
+    
+    projects_parser.add_argument(
+        '--folders-remove',
+        metavar='PATH',
+        help='Remove a folder from watched folders'
+    )
+    
+    projects_parser.add_argument(
+        '--list',
+        action='store_true',
+        help='List all watched folders and projects'
+    )
+    
+    projects_parser.add_argument(
+        '--refresh-folders',
+        action='store_true',
+        help='Refresh projects in all watched folders'
+    )
+    
+    projects_parser.add_argument(
+        '--go',
+        metavar='PROJECT',
+        help='Navigate to project by name or path'
+    )
+    
+    # Go command (shortcut for projects --go)
+    go_parser = subparsers.add_parser(
+        'go',
+        help='Navigate to project'
+    )
+    
+    go_parser.add_argument(
+        'project',
+        help='Project name or path to navigate to'
+    )
 
     return parser.parse_args()
 
@@ -67,6 +137,12 @@ def process_args(args) -> Optional[int]:
     """Process parsed arguments and execute corresponding commands."""
     if args.command == 'structure':
         handle_structure_command(args)
+        return 0
+    elif args.command == 'projects':
+        handle_projects_command(args)
+        return 0
+    elif args.command == 'go':
+        handle_go_command(args)
         return 0
     
     # If no command specified, return None to launch interactive mode

@@ -7,6 +7,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.5] - 2024-02-17
+
+### Added
+- Added projects management system
+  - Watch folders for projects detection
+  - Support for low-level and deep scanning modes
+  - Automatic project type detection in watched folders
+  - Project navigation feature with new terminal
+  - Projects listing with detailed information
+
+- Added command line interface for projects management:
+  - `devtool projects --folders-add PATH [--low-level]`
+  - `devtool projects --folders-remove PATH`
+  - `devtool projects --list`
+  - `devtool projects --refresh-folders`
+  - `devtool projects --go PROJECT_NAME`
+  - `devtool go PROJECT_NAME` (shortcut command)
+  
+- Added interactive menu for projects management
+
+### Changed
+- Enhanced CLI with better command documentation
+- Improved project detection efficiency
+- Updated menu structure to include projects management
+
+
 ## [0.2.2] - 2024-02-17
 
 ### Added

@@ -9,6 +9,13 @@ DevTooling CLI is an advanced command-line tool for project analysis and develop
   - Support for multiple frameworks and technologies
   - System of detection based on configurable rules
 
+- **Project Management**
+  - Watch folders for automatic project detection
+  - Low-level and deep scanning modes
+  - Quick project navigation
+  - Project type classification
+  - Project listing and organization
+
 - **Visualization of Structure**
   - Interactive directory tree
   - Smart filtering of files and folders
@@ -118,14 +125,51 @@ pip install .
 
 ## 📖 Use
 
-### Basic Usage
+### Interactive Mode
 
 ```bash
-# Launch DevTooling CLI
+# Launch the interactive CLI
 devtool
 
 # Or if installed from source
 python -m devtool
+```
+
+### Command Line Mode
+
+*Structure Visualization*
+
+```bash
+# Show project structure with different modes
+devtool structure --mode MODE PATH
+
+# Examples:
+devtool structure --mode automatic ./my-project
+devtool structure --mode manual .
+devtool structure --mode complete /path/to/project
+```
+
+*Projects Management*
+
+```bash
+# Add a folder to watch for projects
+devtool projects --folders-add PATH
+# Add with low-level scanning (only root and first level)
+devtool projects --folders-add PATH --low-level
+
+# Remove a watched folder
+devtool projects --folders-remove PATH
+
+# List all watched folders and detected projects
+devtool projects --list
+
+# Refresh projects in watched folders
+devtool projects --refresh-folders
+
+# Navigate to a project
+devtool projects --go PROJECT_NAME
+# or use the shortcut
+devtool go PROJECT_NAME
 ```
 
 ## 📝 Configuration

@@ -17,5 +17,11 @@ def load_config(filename: str) -> Dict[str, Any]:
     with open(config_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def save_config(filename: str, data: Dict[str, Any]):
+    """Save configuration to file."""
+    config_path = os.path.join(get_config_path(), filename)
+    with open(config_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2)
+
 def get_version() -> str:
     return "0.2.1"
