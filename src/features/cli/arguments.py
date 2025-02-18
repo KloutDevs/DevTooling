@@ -109,6 +109,12 @@ def parse_args():
     )
     
     projects_parser.add_argument(
+        '--clear',
+        action='store_true',
+        help='Clear all folders and projects from configuration'
+    )
+    
+    projects_parser.add_argument(
         '--refresh-folders',
         action='store_true',
         help='Refresh projects in all watched folders'

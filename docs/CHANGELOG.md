@@ -7,6 +7,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.6] - 2024-02-18
+
+### Added
+- Added clear configuration command: `devtool projects --clear`
+- Added persistent configuration storage using appdirs
+- Added automatic config initialization for compiled version
+
+### Changed
+- Modified low-level scanning to properly handle nested projects
+- Improved configuration file handling in compiled version
+- Enhanced project detection to avoid unnecessary deep scanning
+- Updated configuration system to use user-specific directories
+- Enhanced build process with better dependency handling
+- Improved PyInstaller build process
+
+### Fixed
+- Fixed configuration persistence in compiled version
+- Fixed low-level scanning to properly detect projects in subfolders
+- Fixed project detection in complex directory structures
+- Fixed PyInstaller build process to include default configuration
+- Fixed configuration storage location in compiled executables
+
 ## [0.2.5] - 2024-02-17
 
 ### Added
@@ -31,7 +53,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced CLI with better command documentation
 - Improved project detection efficiency
 - Updated menu structure to include projects management
-
 
 ## [0.2.2] - 2024-02-17
 

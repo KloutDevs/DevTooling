@@ -6,7 +6,7 @@ long_description = (this_directory / "README.MD").read_text(encoding="utf-8")
 
 setup(
     name="devtooling-cli",
-    version="0.2.5",
+    version="0.2.6",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -14,6 +14,7 @@ setup(
         'questionary>=1.10.0',
         'pyfiglet>=0.8.post1',
         'colorama>=0.4.4',
+        'appdirs>=1.4.4',
     ],
     entry_points={
         'console_scripts': [

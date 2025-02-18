@@ -4,6 +4,7 @@ from ..tree.structure import TreeVisualizer
 from rich.table import Table
 from rich.console import Console
 import logging
+import questionary
 
 logger = logging.getLogger('devtooling')
 
@@ -97,6 +98,11 @@ def handle_projects_command(args):
             projects_found = manager.refresh_folder(low_level=args.low_level)
             console.print(f"[green]✓ Folders refreshed successfully[/green]")
             console.print(f"[green]Found {projects_found} projects[/green]")
+
+        elif args.clear:
+            if questionary.confirm("Are you sure you want to clear all folders and projects?").ask():
+                manager.clear_config()
+                console.print("[green]✓ Configuration cleared successfully[/green]")
 
         elif args.go:
             path = manager.get_project_path(args.go)

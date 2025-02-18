@@ -80,81 +80,71 @@ class ProjectManager:
         """List all watched folders with their configurations."""
         return self.config["folders"]
 
-
     def refresh_folder(self, folder_path: Optional[str] = None, low_level: Optional[bool] = None):
         """
         Refresh projects in specified folder or all folders.
-        
+
         Args:
             folder_path: Specific folder to refresh, or None for all folders
             low_level: Override scanning mode for this refresh
         """
         try:
             projects_found = 0
-    
+
             if folder_path:
                 abs_path = os.path.abspath(folder_path)
                 folders = [{"path": abs_path, "low_level": low_level if low_level is not None else False}]
-                # Limpiar proyectos existentes de esta carpeta
+                # Clean existing projects for a refresh
                 self.config["projects"] = {
                     k: v for k, v in self.config["projects"].items()
                     if not k.startswith(abs_path)
                 }
             else:
                 folders = self.config["folders"]
-                # Limpiar todos los proyectos para un refresh completo
+                # Clean all projects for a complete refresh
                 self.config["projects"] = {}
-    
+
             for folder_config in folders:
                 folder = folder_config["path"]
                 is_low_level = low_level if low_level is not None else folder_config.get("low_level", False)
-                
+
                 self.logger.info(f"Scanning folder: {folder} (low-level: {is_low_level})")
-                
-                # Analyze root directory
-                project_type = self.detector.detect_project_type(folder)
-                if project_type != 'otro':
-                    projects_found += 1
-                    self.logger.info(f"Found {project_type} project in: {folder}")
-                    self.config["projects"][folder] = {
-                        "name": os.path.basename(folder),
-                        "type": project_type,
-                        "path": folder
-                    }
-    
-                # First level scan
-                for item in os.listdir(folder):
-                    item_path = os.path.join(folder, item)
-                    if os.path.isdir(item_path) and not item.startswith('.'):
-                        # Analyze first level directory
-                        project_type = self.detector.detect_project_type(item_path)
-                        if project_type != 'otro':
-                            projects_found += 1
-                            self.logger.info(f"Found {project_type} project in: {item_path}")
-                            self.config["projects"][item_path] = {
-                                "name": item,
-                                "type": project_type,
-                                "path": item_path
-                            }
-                        
-                        # If not low_level, scan one level deeper
-                        if not is_low_level:
-                            for subitem in os.listdir(item_path):
-                                subitem_path = os.path.join(item_path, subitem)
-                                if os.path.isdir(subitem_path) and not subitem.startswith('.'):
-                                    project_type = self.detector.detect_project_type(subitem_path)
-                                    if project_type != 'otro':
-                                        projects_found += 1
-                                        self.logger.info(f"Found {project_type} project in: {subitem_path}")
-                                        self.config["projects"][subitem_path] = {
-                                            "name": subitem,
-                                            "type": project_type,
-                                            "path": subitem_path
-                                        }
-    
-            self._save_config()
-            return projects_found
-    
+
+                def scan_directory(current_path: str, level: int):
+                    nonlocal projects_found
+
+                    # Analyze current directory
+                    project_type = self.detector.detect_project_type(current_path)
+                    if project_type != 'otro':
+                        projects_found += 1
+                        self.logger.info(f"Found {project_type} project in: {current_path}")
+                        self.config["projects"][current_path] = {
+                            "name": os.path.basename(current_path),
+                            "type": project_type,
+                            "path": current_path
+                        }
+                        # If we find a project, we don't continue scanning subdirectories
+                        return
+
+                    # If we are in low_level mode and we have passed the level 1, we don't continue
+                    if is_low_level and level > 1:
+                        return
+
+                    # Scan subdirectories
+                    try:
+                        for item in os.listdir(current_path):
+                            item_path = os.path.join(current_path, item)
+                            if os.path.isdir(item_path) and not item.startswith('.'):
+                                scan_directory(item_path, level + 1)
+                    except Exception as e:
+                        self.logger.error(f"Error scanning directory {current_path}: {str(e)}")
+
+                # Start scanning from root (level 0)
+                scan_directory(folder, 0)
+
+                self._save_config()
+                return projects_found
+
         except Exception as e:
             self.logger.error(f"Error refreshing folders: {str(e)}")
             return 0
@@ -171,3 +161,8 @@ class ProjectManager:
                 return project_info["path"]
                 
         return None
+    
+    def clear_config(self):
+        """Clear all folders and projects from configuration."""
+        self.config = {"folders": [], "projects": {}}
+        self._save_config()
