@@ -1,0 +1,7 @@
+include README.MD
+
+recursive-include src/devtooling/config *.json
+recursive-include src/devtooling/ui *
+recursive-include src/devtooling/core *
+recursive-include src/devtooling/utils *
+recursive-include docs *

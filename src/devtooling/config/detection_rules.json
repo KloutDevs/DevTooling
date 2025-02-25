@@ -1,0 +1,452 @@
+{
+  "rules": [
+    {
+      "fileType": "svelte",
+      "files": ["svelte.config.js", "rollup.config.js", "svelte.config.cjs", "src/routes"],
+      "priority": 1,
+      "include": ["node"],
+      "ignore": [".svelte-kit", "build", "node_modules"]
+    },
+    {
+      "fileType": "git",
+      "files": [".git", ".gitignore", ".gitattributes", ".gitmodules"],
+      "priority": 1,
+      "include": [],
+      "ignore": [".git"]
+    },
+    {
+      "fileType": "nextjs",
+      "files": ["next.config.js", "next.config.mjs", "pages", "pages/api", "app/page.js", "app/page.tsx"],
+      "priority": 1,
+      "include": ["react", "node"],
+      "ignore": [".next", "node_modules"]
+    },
+    {
+      "fileType": "vue",
+      "files": ["vue.config.js", "nuxt.config.js", "vite.config.js", "src/App.vue"],
+      "priority": 1,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist", ".nuxt"]
+    },
+    {
+      "fileType": "react",
+      "files": ["react.config.js", "src/App.jsx", "src/App.tsx", "public/index.html", "vite.config.js"],
+      "priority": 2,
+      "include": ["node"],
+      "ignore": ["node_modules", "build", ".next"]
+    },
+    {
+      "fileType": "angular",
+      "files": ["angular.json", "src/app/app.module.ts", "src/main.ts"],
+      "priority": 1,
+      "include": ["node", "typescript"],
+      "ignore": ["node_modules", "dist", ".nuxt"]
+    },
+    {
+      "fileType": "django",
+      "files": ["manage.py", "settings.py", "wsgi.py", "asgi.py", "urls.py"],
+      "priority": 1,
+      "include": ["python"],
+      "ignore": ["db.sqlite3", "staticfiles", "__pycache__", "venv"]
+    },
+    {
+      "fileType": "flask",
+      "files": ["app.py", "wsgi.py", "requirements.txt", "Procfile"],
+      "priority": 2,
+      "include": ["python"],
+      "ignore": ["__pycache__", "venv"]
+    },
+    {
+      "fileType": "python",
+      "files": ["requirements.txt", "pyproject.toml", "setup.py", "setup.cfg", "Pipfile"],
+      "priority": 3,
+      "include": [],
+      "ignore": ["__pycache__", "venv", ".venv", ".env", "dist", "build"]
+    },
+    {
+      "fileType": "node",
+      "files": ["package.json", "package-lock.json", "yarn.lock", "npm-shrinkwrap.json"],
+      "priority": 4,
+      "include": [],
+      "ignore": ["node_modules", "dist", "build"]
+    },
+    {
+      "fileType": "bun",
+      "files": ["bun.lockb", "bunfig.toml"],
+      "priority": 3,
+      "include": ["node"],
+      "ignore": ["node_modules"]
+    },
+    {
+      "fileType": "typescript",
+      "files": ["tsconfig.json", "tslint.json", "*.ts", "*.tsx"],
+      "priority": 3,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist"]
+    },
+    {
+      "fileType": "dotnet",
+      "files": ["*.csproj", "*.sln", "global.json", "Web.config", "Program.cs", "Startup.cs"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["bin", "obj"]
+    },
+    {
+      "fileType": "java",
+      "files": ["pom.xml", "build.gradle", "gradlew", "src/main/java"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["target", ".gradle", "build"]
+    },
+    {
+      "fileType": "spring",
+      "files": ["application.properties", "application.yml", "src/main/resources", "src/main/java/*/Application.java"],
+      "priority": 2,
+      "include": ["java"],
+      "ignore": ["target", ".gradle", "build"]
+    },
+    {
+      "fileType": "rust",
+      "files": ["Cargo.toml", "Cargo.lock", "src/main.rs", "src/lib.rs"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["target", ".cargo"]
+    },
+    {
+      "fileType": "go",
+      "files": ["go.mod", "go.sum", "main.go", "*.go"],
+      "priority": 1,
+      "include": [],
+      "ignore": [".git", "vendor"]
+    },
+    {
+      "fileType": "ruby",
+      "files": ["Gemfile", "Gemfile.lock", "Rakefile", "config.ru", "*.rb"],
+      "priority": 1,
+      "include": [],
+      "ignore": [".bundle", "vendor"]
+    },
+    {
+      "fileType": "rails",
+      "files": ["config/application.rb", "config/routes.rb", "app/controllers", "Gemfile"],
+      "priority": 2,
+      "include": ["ruby"],
+      "ignore": [".bundle", "vendor", "tmp", "log"]
+    },
+    {
+      "fileType": "php",
+      "files": ["composer.json", "composer.lock", "*.php", "index.php"],
+      "priority": 2,
+      "include": [],
+      "ignore": ["vendor", "node_modules"]
+    },
+    {
+      "fileType": "laravel",
+      "files": ["artisan", "routes/web.php", "app/Http/Controllers"],
+      "priority": 2,
+      "include": ["php"],
+      "ignore": ["vendor", "node_modules", "storage", "bootstrap/cache"]
+    },
+    {
+      "fileType": "wordpress",
+      "files": ["wp-config.php", "wp-content", "wp-includes"],
+      "priority": 2,
+      "include": ["php"],
+      "ignore": ["uploads", "cache"]
+    },
+    {
+      "fileType": "docker",
+      "files": ["Dockerfile", "docker-compose.yml", "docker-compose.yaml", ".dockerignore"],
+      "priority": 2,
+      "include": [],
+      "ignore": []
+    },
+    {
+      "fileType": "kubernetes",
+      "files": ["kubectl.yaml", "k8s", "helmfile.yaml", "Chart.yaml", "values.yaml"],
+      "priority": 2,
+      "include": [],
+      "ignore": []
+    },
+    {
+      "fileType": "terraform",
+      "files": ["*.tf", "terraform.tfstate", "main.tf", "variables.tf", "terraform.tfvars"],
+      "priority": 2,
+      "include": [],
+      "ignore": [".terraform", "*.tfstate", "*.tfstate.backup"]
+    },
+    {
+      "fileType": "ansible",
+      "files": ["ansible.cfg", "playbook.yml", "site.yml", "roles"],
+      "priority": 2,
+      "include": [],
+      "ignore": []
+    },
+    {
+      "fileType": "flutter",
+      "files": ["pubspec.yaml", "pubspec.lock", "lib/main.dart", "android", "ios"],
+      "priority": 1,
+      "include": ["dart"],
+      "ignore": [".dart_tool", "build", ".flutter-plugins"]
+    },
+    {
+      "fileType": "dart",
+      "files": ["pubspec.yaml", "*.dart"],
+      "priority": 2,
+      "include": [],
+      "ignore": [".dart_tool", "build"]
+    },
+    {
+      "fileType": "swift",
+      "files": ["Package.swift", "*.swift", "*.xcodeproj", "*.xcworkspace"],
+      "priority": 1,
+      "include": [],
+      "ignore": [".build", "Pods", "DerivedData"]
+    },
+    {
+      "fileType": "kotlin",
+      "files": ["*.kt", "kotlinc", "build.gradle.kts"],
+      "priority": 2,
+      "include": ["java"],
+      "ignore": ["build", ".gradle"]
+    },
+    {
+      "fileType": "android",
+      "files": ["AndroidManifest.xml", "build.gradle", "app/src/main", "gradle.properties"],
+      "priority": 1,
+      "include": ["java", "kotlin"],
+      "ignore": ["build", ".gradle", "app/build"]
+    },
+    {
+      "fileType": "ios",
+      "files": ["*.xcodeproj", "*.xcworkspace", "Info.plist", "AppDelegate.swift"],
+      "priority": 1,
+      "include": ["swift", "objective-c"],
+      "ignore": ["Pods", "DerivedData"]
+    },
+    {
+      "fileType": "objective-c",
+      "files": ["*.m", "*.h"],
+      "priority": 2,
+      "include": [],
+      "ignore": ["Pods", "DerivedData"]
+    },
+    {
+      "fileType": "elixir",
+      "files": ["mix.exs", "mix.lock", "lib"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["_build", "deps"]
+    },
+    {
+      "fileType": "phoenix",
+      "files": ["mix.exs", "config/config.exs", "lib/app_web"],
+      "priority": 2,
+      "include": ["elixir"],
+      "ignore": ["_build", "deps", "priv/static"]
+    },
+    {
+      "fileType": "scala",
+      "files": ["build.sbt", "*.scala"],
+      "priority": 1,
+      "include": ["java"],
+      "ignore": ["target", ".bsp", "project/target"]
+    },
+    {
+      "fileType": "lua",
+      "files": ["*.lua", "main.lua"],
+      "priority": 1,
+      "include": [],
+      "ignore": []
+    },
+    {
+      "fileType": "perl",
+      "files": ["*.pl", "*.pm", "cpanfile"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["local"]
+    },
+    {
+      "fileType": "haskell",
+      "files": ["*.hs", "stack.yaml", "cabal.project", "Setup.hs", "package.yaml"],
+      "priority": 1,
+      "include": [],
+      "ignore": [".stack-work", "dist", "dist-newstyle"]
+    },
+    {
+      "fileType": "electron",
+      "files": ["electron.js", "main.js", "electron-builder.yml", "electronmon.json"],
+      "priority": 2,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist", "out"]
+    },
+    {
+      "fileType": "webpack",
+      "files": ["webpack.config.js", "webpack.common.js", "webpack.dev.js", "webpack.prod.js"],
+      "priority": 3,
+      "include": ["node"],
+      "ignore": ["dist", "build"]
+    },
+    {
+      "fileType": "vite",
+      "files": ["vite.config.js", "vite.config.ts"],
+      "priority": 3,
+      "include": ["node"],
+      "ignore": ["dist", "node_modules"]
+    },
+    {
+      "fileType": "fastapi",
+      "files": ["main.py", "app/main.py", "requirements.txt"],
+      "priority": 2,
+      "include": ["python"],
+      "ignore": ["__pycache__", "venv"]
+    },
+    {
+      "fileType": "jupyter",
+      "files": ["*.ipynb", "notebooks"],
+      "priority": 2,
+      "include": ["python"],
+      "ignore": [".ipynb_checkpoints"]
+    },
+    {
+      "fileType": "r",
+      "files": ["*.R", "*.Rmd", "DESCRIPTION", "NAMESPACE"],
+      "priority": 1,
+      "include": [],
+      "ignore": [".Rproj.user", ".Rhistory", ".RData"]
+    },
+    {
+      "fileType": "c",
+      "files": ["*.c", "*.h", "Makefile"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["*.o", "*.out", "*.so", "*.a"]
+    },
+    {
+      "fileType": "cpp",
+      "files": ["*.cpp", "*.cc", "*.cxx", "*.hpp", "CMakeLists.txt"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["*.o", "*.out", "*.so", "build"]
+    },
+    {
+      "fileType": "clojure",
+      "files": ["project.clj", "deps.edn", "*.clj", "*.cljs"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["target", ".cpcache"]
+    },
+    {
+      "fileType": "groovy",
+      "files": ["*.groovy", "Jenkinsfile", "*.gradle"],
+      "priority": 2,
+      "include": ["java"],
+      "ignore": [".gradle", "build"]
+    },
+    {
+      "fileType": "jenkins",
+      "files": ["Jenkinsfile", "jenkins", "jenkins.yaml"],
+      "priority": 2,
+      "include": [],
+      "ignore": []
+    },
+    {
+      "fileType": "deno",
+      "files": ["deno.json", "deno.jsonc", "deps.ts", "mod.ts", "*.ts"],
+      "priority": 1,
+      "include": [],
+      "ignore": []
+    },
+    {
+      "fileType": "crystal",
+      "files": ["shard.yml", "*.cr"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["lib", ".crystal"]
+    },
+    {
+      "fileType": "nim",
+      "files": ["*.nim", "*.nimble"],
+      "priority": 1,
+      "include": [],
+      "ignore": ["nimcache", "nimble"]
+    },
+    {
+      "fileType": "remix",
+      "files": ["remix.config.js", "app/routes", "app/root.tsx"],
+      "priority": 2,
+      "include": ["react", "node"],
+      "ignore": ["node_modules", "build", ".cache"]
+    },
+    {
+      "fileType": "gatsby",
+      "files": ["gatsby-config.js", "gatsby-node.js", "gatsby-browser.js"],
+      "priority": 2,
+      "include": ["react", "node"],
+      "ignore": ["node_modules", "public", ".cache"]
+    },
+    {
+      "fileType": "nuxt",
+      "files": ["nuxt.config.js", "nuxt.config.ts", "pages", "layouts"],
+      "priority": 2,
+      "include": ["vue", "node"],
+      "ignore": ["node_modules", ".nuxt", "dist"]
+    },
+    {
+      "fileType": "astro",
+      "files": ["astro.config.mjs", "src/pages", "*.astro"],
+      "priority": 1,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist"]
+    },
+    {
+      "fileType": "solidjs",
+      "files": ["vite.config.ts", "src/root.tsx", "src/index.tsx", "*.solid.tsx"],
+      "priority": 2,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist"]
+    },
+    {
+      "fileType": "qwik",
+      "files": ["vite.config.ts", "src/root.tsx", "src/routes", "*.qwik.tsx"],
+      "priority": 2,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist", "server"]
+    },
+    {
+      "fileType": "unity",
+      "files": ["ProjectSettings", "Assets", "Packages", "*.unity"],
+      "priority": 1,
+      "include": ["csharp"],
+      "ignore": ["Library", "Temp", "obj", "Build", "Builds"]
+    },
+    {
+      "fileType": "csharp",
+      "files": ["*.cs", "*.csproj", "Program.cs"],
+      "priority": 2,
+      "include": [],
+      "ignore": ["bin", "obj"]
+    },
+    {
+      "fileType": "fsharp",
+      "files": ["*.fs", "*.fsx", "*.fsproj"],
+      "priority": 2,
+      "include": ["dotnet"],
+      "ignore": ["bin", "obj"]
+    },
+    {
+      "fileType": "symfony",
+      "files": ["symfony.lock", "composer.json", "bin/console", "src/Kernel.php"],
+      "priority": 2,
+      "include": ["php"],
+      "ignore": ["var", "vendor", "public/bundles"]
+    },
+    {
+      "fileType": "ember",
+      "files": ["ember-cli-build.js", "app/router.js", ".ember-cli"],
+      "priority": 2,
+      "include": ["node"],
+      "ignore": ["node_modules", "dist", "tmp"]
+    }
+  ]
+}
