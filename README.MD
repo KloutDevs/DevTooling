@@ -14,6 +14,10 @@
 DevTooling CLI is an advanced command-line tool for project analysis and development management.
 </p>
  
+<p align="center">
+  <img src="https://i.imgur.com/GmYPHOS.gif" width="500">
+</p>
+
 
 ## 🚀 Features
 
