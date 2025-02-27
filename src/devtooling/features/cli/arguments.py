@@ -136,6 +136,12 @@ def parse_args():
         'project',
         help='Project name or path to navigate to'
     )
+    
+    # Update command
+    update_parser = subparsers.add_parser(
+        'update',
+        help='Update DevTooling CLI to the latest version'
+    )
 
     return parser.parse_args()
 

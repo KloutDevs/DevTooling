@@ -30,7 +30,7 @@
     },
     {
       "fileType": "react",
-      "files": ["react.config.js", "src/App.jsx", "src/App.tsx", "public/index.html", "vite.config.js"],
+      "files": ["src/App.jsx", "src/App.tsx"],
       "priority": 2,
       "include": ["node"],
       "ignore": ["node_modules", "build", ".next"]
@@ -51,7 +51,7 @@
     },
     {
       "fileType": "flask",
-      "files": ["app.py", "wsgi.py", "requirements.txt", "Procfile"],
+      "files": ["app.py", "wsgi.py"],
       "priority": 2,
       "include": ["python"],
       "ignore": ["__pycache__", "venv"]
@@ -296,7 +296,7 @@
     },
     {
       "fileType": "fastapi",
-      "files": ["main.py", "app/main.py", "requirements.txt"],
+      "files": ["main.py", "app/main.py"],
       "priority": 2,
       "include": ["python"],
       "ignore": ["__pycache__", "venv"]

@@ -11,6 +11,7 @@ from devtooling.features.tree.structure import TreeVisualizer
 from devtooling.features.projects import ProjectManager, ProjectNavigator
 from devtooling.ui.banner import Banner
 from devtooling.utils.config import get_version
+from devtooling.utils.updater import check_latest_version, update_package
 
 class Menu:
     def __init__(self):
@@ -21,6 +22,34 @@ class Menu:
         self.navigator = ProjectNavigator()
         self.banner = Banner()
         self.logger = logging.getLogger('devtooling')
+        self._check_updates()
+
+    def _check_updates(self):
+        """Check for updates and show notification if available."""
+        try:
+            current, latest = check_latest_version()
+            if latest:
+                panel = Panel(
+                    f"[yellow]New version available: {latest}[/yellow]\n"
+                    f"[cyan]Current version: {current}[/cyan]\n"
+                    "Run [green]devtool update[/green] to upgrade",
+                    title="[blue]Update Available[/blue]",
+                    border_style="yellow"
+                )
+                self.console.print(panel)
+                
+                if questionary.confirm(
+                    "Would you like to update now?",
+                    default=False
+                ).ask():
+                    self.console.print("[cyan]Updating package...[/cyan]")
+                    if update_package():
+                        self.console.print("[green]✓ Update successful! Please restart DevTooling.[/green]")
+                        exit(0)
+                    else:
+                        self.console.print("[red]Failed to update package[/red]")
+        except Exception as e:
+            self.logger.error(f"Error checking updates: {str(e)}")
 
     def show_progress(self, message: str):
         with Progress(

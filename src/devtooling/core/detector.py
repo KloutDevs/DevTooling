@@ -27,6 +27,12 @@ class ProjectDetector:
         """Detect the main project type."""
         self.logger.debug(f"Detecting project type in: {path}")
         
+        # Debug print
+        print(f"\nChecking path: {path}")
+        detected_types = self._detect_all_types(path)
+        print(f"Detected types: {detected_types}")
+    
+        
         # Order rules by priority
         sorted_rules = sorted(self.detection_rules, key=lambda x: x['priority'])
         detected_types = self._detect_all_types(path)

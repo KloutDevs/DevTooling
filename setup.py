@@ -6,7 +6,7 @@ long_description = (this_directory / "README.MD").read_text(encoding="utf-8")
 
 setup(
     name="devtooling-cli",
-    version="0.2.7",
+    version="0.2.9",
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     include_package_data=True,
@@ -19,6 +19,7 @@ setup(
         'pyfiglet>=0.8.post1',
         'colorama>=0.4.4',
         'appdirs>=1.4.4',
+        'requests>=2.25.1',
     ],
     entry_points={
         'console_scripts': [

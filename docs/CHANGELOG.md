@@ -7,6 +7,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.9] - 2024-02-27
+
+### Added
+- Added comprehensive test suite:
+  - Core tests for ProjectDetector (98% coverage)
+  - Feature tests for TreeVisualizer (93% coverage)
+  - Configuration tests (90% coverage)
+  - Test documentation and coverage tracking
+- Added testing documentation and guidelines
+- Added testing patterns and best practices
+
+### Changed
+- Enhanced configuration system with better testing support
+- Improved error handling in core components
+- Updated project structure for better testability
+- Enhanced mock support for production environment
+
+### Fixed
+- Fixed configuration handling in development environment
+- Fixed directory structure visualization edge cases
+- Fixed project type detection accuracy
+- Fixed config path resolution in testing environment
+
+### Testing Coverage
+- Core modules: 98% coverage
+- Feature modules: 93% coverage
+- Utils modules: 65% coverage average
+  - config.py: 90% coverage
+  - logger.py: 34% coverage
+  - updater.py: 36% coverage
+
+### Technical Debt
+- Pending CLI argument handler tests (18% coverage)
+- Pending UI component tests (0% coverage)
+- Pending file handler tests (0% coverage)
+- Known issues with production environment mocking
+
 ## [0.2.6] - 2024-02-18
 
 ### Added

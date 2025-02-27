@@ -100,11 +100,11 @@ class ProjectManager:
                     if not k.startswith(abs_path)
                 }
             else:
-                folders = self.config["folders"]
+                folders_to_refresh = self.config["folders"]
                 # Clean all projects for a complete refresh
                 self.config["projects"] = {}
 
-            for folder_config in folders:
+            for folder_config in folders_to_refresh:
                 folder = folder_config["path"]
                 is_low_level = low_level if low_level is not None else folder_config.get("low_level", False)
 

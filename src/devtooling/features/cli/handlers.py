@@ -1,6 +1,7 @@
 from devtooling.features.projects import ProjectManager, ProjectNavigator
 from devtooling.core.detector import ProjectDetector
 from devtooling.features.tree.structure import TreeVisualizer
+from devtooling.utils.updater import check_latest_version, update_package
 from rich.table import Table
 from rich.console import Console
 import logging
@@ -130,3 +131,22 @@ def handle_go_command(args):
             console.print("[red]Failed to navigate to path[/red]")
     else:
         console.print("[red]Project not found[/red]")
+        
+def handle_update_command(args):
+    """Handle update command execution."""
+    console = Console()
+    current, latest = check_latest_version()
+    
+    if not latest:
+        console.print("[green]You are already using the latest version![/green]")
+        return
+        
+    console.print(f"[yellow]New version available: {latest}[/yellow]")
+    console.print(f"[cyan]Current version: {current}[/cyan]")
+    
+    if questionary.confirm("Would you like to update now?", default=True).ask():
+        console.print("[cyan]Updating package...[/cyan]")
+        if update_package():
+            console.print("[green]✓ Update successful! Please restart DevTooling.[/green]")
+        else:
+            console.print("[red]Failed to update package[/red]")

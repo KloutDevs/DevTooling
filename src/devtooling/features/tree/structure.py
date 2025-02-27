@@ -41,12 +41,17 @@ class TreeVisualizer:
         is_last: bool = True,
         allowed: Optional[List[str]] = None,
         level: int = 0,
+        max_level: Optional[int] = None, 
         show_all: bool = False
     ):
         """Shows the directory structure recursively."""
         try:
             if not os.path.exists(path):
                 self.logger.warning(f"Path does not exist: {path}")
+                raise Exception(f"Path does not exist: {path}")
+
+            # Verificar max_level aquí, justo después de validar el path
+            if max_level is not None and level > max_level:
                 return
 
             name = os.path.basename(path)
@@ -70,6 +75,7 @@ class TreeVisualizer:
                         is_last_item,
                         None,
                         level + 1,
+                        max_level,
                         show_all
                     )
                 return
@@ -114,6 +120,7 @@ class TreeVisualizer:
                         is_last_item,
                         None,
                         level + 1,
+                        max_level,
                         show_all
                     )
 
