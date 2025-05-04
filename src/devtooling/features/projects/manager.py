@@ -115,7 +115,7 @@ class ProjectManager:
 
                     # Analyze current directory
                     project_type = self.detector.detect_project_type(current_path)
-                    if project_type != 'otro':
+                    if project_type != 'other':
                         projects_found += 1
                         self.logger.info(f"Found {project_type} project in: {current_path}")
                         self.config["projects"][current_path] = {

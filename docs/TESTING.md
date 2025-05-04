@@ -14,214 +14,259 @@ This document outlines the testing strategy for DevTooling CLI, including differ
 
 ### 1. Core Tests
 #### ProjectDetector (`test_detector.py`)
-- [ ] Detection of project type
+- [X] Detection of project type
   - Verification of correct detection of common projects (React, Node, Python, etc.)
   - Validation of project detection priorities
   - Checking handling of empty/invalid directories
 
-- [ ] Detection of multiple technologies
+- [X] Detection of multiple technologies
   - Verification of detection of included technologies
   - Validate detection hierarchy
   - Checking inclusion rules
 
-- [ ] Ignore System
+- [X] Ignore System
   - Verificate ignore patterns for project types
   - Validate inheritance of ignore rules
   - Check special cases
 
 ### 2. Features Tests
 #### TreeVisualizer (`test_structure.py`)
-- [ ] Visualización de estructura
-  - Verificar generación correcta del árbol
-  - Validar filtrado de directorios
-  - Comprobar modos de visualización (automático, manual, completo)
+- [X] Structure Visualization
+  - Verify correct tree generation
+  - Validate directory filtering
+  - Check visualization modes (automatic, manual, complete)
 
 #### ProjectManager (`test_projects.py`)
-- [ ] Gestión de carpetas
-  - Verificar añadir/remover carpetas
-  - Validar escaneo de proyectos
-  - Comprobar persistencia de configuración
+- [] Folder Management
+  - Verify add/remove folders
+  - Validate project scanning
+  - Check configuration persistence
 
-- [ ] Navegación de proyectos
-  - Verificar navegación a proyectos
-  - Validar búsqueda por nombre/ruta
-  - Comprobar manejo de errores
+- [ ] Project Navigation
+  - Verify project navigation
+  - Validate search by name/path
+  - Check error handling
 
 #### CLI Arguments (`test_cli.py`)
-- [ ] Procesamiento de argumentos
-  - Verificar parsing de comandos
-  - Validar opciones y flags
-  - Comprobar manejo de errores
+- [ ] Argument Processing
+  - Verify command parsing
+  - Validate options and flags
+  - Check error handling
 
 ### 3. Utils Tests
 #### Configuration (`test_config.py`)
-- [ ] Manejo de configuración
-  - Verificar carga/guardado de configuración
-  - Validar versionado
-  - Comprobar inicialización
+- [X] Configuration Management
+  - Configuration Loading
+    - Load detection_rules.json
+    - Load projects.json
+    - Handle missing files
+    - Handle invalid JSON
+  - Configuration Saving
+    - Basic save operations
+    - Directory creation
+    - Permission handling
+  - Path Management
+    - Development environment configuration
+    - Production environment configuration
+    - Handle non-existent projects
+    - Package resource loading
+    - Nested directory creation
+  - Production Environment
+    - Mock MEIPASS handling
+    - Rules copying in production
+    - Package resource fallback
 
-## 🔍 Metodología
+#### Logger (`test_logger.py`)
+- [ ] Logging System
+  - Verify log configuration
+  - Test log levels
+  - Check file handlers
 
-1. **Tests Unitarios**
-   - Uso de `pytest` como framework principal
-   - Implementación de fixtures para casos comunes
-   - Mocking de sistema de archivos cuando sea necesario
+#### File Handler (`test_file_handler.py`)
+- [ ] File Operations
+  - Test directory creation
+  - Test file listing
+  - Test file size calculations
 
-2. **Tests de Integración**
-   - Verificación de interacción entre componentes
-   - Pruebas de flujos completos
-   - Validación de casos de uso reales
+## 🔍 Testing Methodology
 
-3. **Tests de Sistema**
-   - Pruebas de CLI en diferentes entornos
-   - Validación de instalación y configuración
-   - Verificación de experiencia de usuario
+1. **Unit Tests** ✅
+   - Using `pytest` as main framework
+   - Implementation of fixtures for common cases
+   - File system mocking when necessary
 
-## 📊 Cobertura
+2. **Integration Tests** 🟡
+   - Component interaction verification
+   - Complete flow testing
+   - Real use case validation
 
-- Objetivo: >80% de cobertura de código
-- Foco en componentes críticos (detector, configuración)
-- Inclusión de casos edge y errores comunes
+3. **System Tests** 🟡
+   - CLI testing in different environments
+   - Installation and configuration validation
+   - User experience verification
 
-## 🚀 Ejecución
+## 📊 Coverage Status
+
+| Module          | Coverage | Status     | Previous |
+|----------------|----------|------------|----------|
+| Core           | 98%      | ✅ Complete | 98%     |
+| Features/Tree  | 93%      | ✅ Complete | 93%     |
+| Utils/Config   | 88%      | ✅ Complete | 65%     |
+| CLI Arguments  | 18%      | 🟡 Progress | 0%      |
+| Project Manager| 17%      | 🟡 Progress | 0%      |
+| UI Components  | 0%       | ❌ Pending  | 0%      |
+
+## 🚀 Test Execution
 
 ```bash
-# Ejecutar todos los tests
+# Run all tests
 pytest
 
-# Ejecutar tests específicos
+# Run specific test modules
 pytest tests/test_detector.py
 pytest tests/test_structure.py
 
-# Ejecutar con cobertura
+# Run with coverage
 pytest --cov=devtooling tests/
 
-## 📝 Convenciones
+# Generate coverage report
+pytest --cov=devtooling tests/ --cov-report=html
+```
 
-1. Nombrado de Tests:
+## 📝 Test Conventions
+
+1. Test Naming:
 
 ```bash
 def test_should_detect_react_project():
 def test_should_handle_invalid_path():
+def test_should_fallback_to_package_resources():
 ```
 
-2. Organización
+2. Organization
 
-- Un archivo de test por módulo
-- Uso de fixtures compartidos
-- Documentación clara de casos de prueba
+- One test file per module
+- Shared fixtures usage
+- Clear test case documentation
 
-3. Aserciones
+```bash
+tests/
+├── core/
+│   └── test_detector.py
+├── features/
+│   ├── cli/
+│   │   ├── test_arguments.py
+│   │   └── test_handlers.py
+│   ├── projects/
+│   │   └── test_manager.py
+│   └── tree/
+│       └── test_structure.py
+└── utils/
+    ├── test_config.py
+    ├── test_logger.py
+    └── test_file_handler.py
+```
 
-- Uso de aserciones descriptivas
-- Mensajes claros de error
-- Validación completa de estados
+3. Assertions
 
-## 🔄 Proceso de Testing
+- Use descriptive assertions
+- Clear error messages
+- Complete state validation
 
-1. Verificar casos positivos y negativos
-2. Incluir casos edge y situaciones inesperadas
-3. Documentar cambios y decisiones
-4. Mantener tests actualizados con cambios de código
+### Latest Updates
 
-## 📈 Estado Actual
+#### Completed Components ✅
+1. **Core Tests - ProjectDetector (98%)**
+   - Project type detection (React, Python, Flask)
+   - Invalid path handling
+   - Multiple technology detection
+   - Directory ignore system
+   - Empty directory handling
+   - Detection priorities
 
-| Módulo   | Cobertura| Estado          |
-|----------|----------|------------------|
-| Core     | 98%      | ✅ Completado  |
-| Features | 93%      | ✅ Completado   |
-| Utils    | ~65%      | 🟡 En Progreso  |
+2. **Features Tests - TreeVisualizer (93%)**
+   - Directory ignore configuration
+   - Manual directory selection
+   - Directory filtering
+   - Complete structure visualization
+   - Directory depth control
+   - Invalid path handling
 
-### Últimas Actualizaciones
+3. **Utils Tests - Configuration (88%)**
+   - Configuration loading/saving
+   - Version management
+   - Development environment handling
+   - Production environment configuration
+   - Package resource fallback
 
-#### Core Tests - ProjectDetector (✅ Completado)
-- Detección de proyecto simple (React, Python, Flask)
-- Manejo de rutas inválidas
-- Detección de múltiples tecnologías
-- Sistema de ignorado de directorios
-- Manejo de directorios vacíos
-- Prioridades de detección
-- Cobertura: 98% del módulo
+#### In Progress Components 🟡
+1. **CLI Arguments (18%)**
+   - Basic command parsing
+   - Initial flag validation
+   - Error handling foundation
 
-#### Features Tests - TreeVisualizer (✅ Completado)
-- Establecer directorios ignorados
-- Validación de configuración
-- Selección manual de directorio con questionary
-- Manejo de directorios vacíos
-- Filtrado de directorios ignorados
-- Visualización de estructura completa
-- Manejo de directorios permitidos
-- Control de profundidad máxima
-- Manejo de rutas inválidas
-- Cobertura: 93% del módulo
+2. **Project Manager (17%)**
+   - Folder management basics
+   - Initial scanning implementation
+   - Navigation groundwork
 
-#### Utils Tests - Configuration (🟡 En Progreso)
-✅ Tests Exitosos (12/15):
-- Carga de configuración
-  - Carga de detection_rules.json
-  - Carga de projects.json
-  - Manejo de archivos faltantes
-  - Manejo de JSON inválido
-- Guardado de configuración
-  - Guardado básico
-  - Creación de directorios
-  - Manejo de permisos
-- Gestión de rutas
-  - Configuración en desarrollo
-  - Manejo de proyectos inexistentes
-  - Carga desde recursos del paquete
-  - Creación de directorios anidados
-- Versionado
-  - Obtención de versión
+3. **Logger System (34%)**
+   - Basic configuration testing
+   - Initial file handling
+   - Log level validation
 
-❌ Tests Fallidos (3/15):
-1. Configuración en producción
-   - Error: FileNotFoundError en mock_meipass
-2. Copia de reglas en producción
-   - Error: FileNotFoundError en creación de directorios
-3. Fallback a recursos del paquete
-   - Error: AttributeError en pkg_resources.open_text
+#### Pending Implementation ❌
+1. **File Handler (0%)**
+   - Directory operations
+   - File listing functionality
+   - Size calculations
+
+2. **UI Components (0%)**
+   - Menu system
+   - Banner display
+   - User interaction
 
 #### 📊 Métricas de Testing:
 - Total de Tests: 31
-- Tests Pasados: 28
-- Tests Fallidos: 3
+- Tests Pasados: 31 (100%)
+- Tests Fallidos: 0 (0%)
 - Cobertura General: 29%
 - Cobertura por Módulos:
   - Core/detector.py: 98%
   - Features/structure.py: 93%
-  - Utils/config.py: 90%
+  - Utils/config.py: 88%
   - Utils/logger.py: 34%
   - Utils/updater.py: 36%
   - Utils/file_handler.py: 0%
+  - UI Components: 0%
 
-### Próximos Pasos
-1. Corregir Tests de Configuración:
-   - Mejorar mocking de sys._MEIPASS
-   - Corregir manejo de directorios temporales
-   - Actualizar importación de pkg_resources
+### Next Steps
+1. **High Priority**
+   - Complete CLI argument tests
+   - Implement project manager tests
+   - Add file handler tests
 
-2. Implementar Tests Pendientes:
-   - CLI Arguments (18% cobertura)
-   - CLI Handlers (12% cobertura)
-   - Project Manager (17% cobertura)
-   - Project Navigator (33% cobertura)
+2. **Medium Priority**
+   - Add UI component tests
+   - Finish logger test suite
+   - Implement system tests
 
-3. Iniciar Tests de:
-   - file_handler.py (0% cobertura)
-   - main.py (0% cobertura)
-   - UI Components (0% cobertura)
+3. **Low Priority**
+   - Add performance tests
+   - Implement stress tests
+   - Enhance documentation
 
-### Problemas Identificados
-1. Mocking de Entorno:
-   - Problemas con sys._MEIPASS en tests de producción
-   - Dificultades con pkg_resources.open_text
+### ⚠️ Known Issues
+1. **Environment Mocking**
+   - sys._MEIPASS simulation in production tests
+   - Package resources handling improvements needed
 
-2. Manejo de Archivos:
-   - Errores en creación de directorios temporales
-   - Problemas con permisos y rutas
+2. **File Operations**
+   - Temporary directory management
+   - Permission handling refinement
+   - Path resolution in different environments
 
-3. Cobertura Baja:
-   - Módulos CLI sin cobertura suficiente
-   - Componentes UI sin tests
-   - Utilidades sin tests completos
+3. **Coverage Gaps**
+   - Complete UI testing implementation
+   - Expand CLI handler coverage
+   - Utility module test completion

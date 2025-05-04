@@ -298,7 +298,8 @@ The tool will automatically detect your project type and apply appropriate filte
 
 ```bash
 
-#Define the rules to detect project types and their dependencies, #and the files and directories to ignore based on the project type.
+#Define the rules to detect project types and their dependencies,
+#and the files and directories to ignore based on the project type.
 
 config/detection_rules.json
 
@@ -307,8 +308,6 @@ config/detection_rules.json
 ## 🤝 Contributing
 
 The contributions are welcome. Please read the contribution guide before starting.
-
-##  Testing
 
 ## 🧪 Testing
 

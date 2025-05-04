@@ -7,7 +7,94 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.9] - 2024-02-27
+## [0.3.0] - 2025-05-04
+
+### Added
+- Added complete test coverage for core components:
+  - Test suite for configuration system (88% coverage)
+  - Test suite for project detector (98% coverage)
+  - Test suite for tree visualization (93% coverage)
+  
+- Added extensive test documentation:
+  - Detailed testing patterns and guidelines
+  - Test coverage tracking and reporting
+  - Testing methodology documentation
+  
+- Added test infrastructure:
+  - Mock system for production environment
+  - Fixture system for common test scenarios
+  - Testing utilities and helpers
+
+### Changed
+- Enhanced testing support across modules:
+  - Improved mock system for file operations
+  - Better handling of test configurations
+  - Enhanced test isolation and reliability
+  
+- Improved error handling and validation:
+  - Better exception handling in configuration system
+  - Enhanced validation in project detection
+  - Improved error reporting in tests
+  
+- Updated development workflow:
+  - Added test-driven development approach
+  - Improved code organization for testability
+  - Enhanced documentation practices
+
+- Solved the issue of deprecated pkg_resources usage:
+  - Replaced pkg_resources with importlib.metadata
+
+### Fixed
+- Fixed testing environment issues:
+  - Resolved mock issues in production environment
+  - Fixed file handling in test scenarios
+  - Corrected configuration path resolution in tests
+  
+- Fixed testing infrastructure:
+  - Resolved package resource loading in tests
+  - Fixed directory handling in test environment
+  - Corrected mock configurations
+
+### Testing Coverage
+- Core Components:
+  - ProjectDetector: 98% coverage
+  - TreeVisualizer: 93% coverage
+  - Configuration System: 88% coverage
+  
+- Feature Modules:
+  - CLI Arguments: 18% coverage (improved from 0%)
+  - Project Manager: 17% coverage (improved from 0%)
+  - Project Navigator: 33% coverage (improved from 0%)
+  
+- Utility Modules:
+  - Logger: 34% coverage
+  - Updater: 36% coverage
+  - File Handler: Pending implementation
+
+### Technical Debt
+- Required improvements:
+  - Complete CLI handler tests
+  - Implement UI component tests
+  - Add file handler tests
+  - Increase coverage of project management
+  - Complete logger test suite
+  
+- Known issues:
+  - Incomplete mock coverage in production
+  - Missing UI component testing
+
+### Documentation
+- Added test documentation:
+  - Testing patterns and best practices
+  - Coverage reporting guidelines
+  - Test implementation examples
+  
+- Updated development guides:
+  - Test writing guidelines
+  - Mock usage documentation
+  - Testing workflow documentation
+
+## [0.2.9] - 2025-02-27
 
 ### Added
 - Added comprehensive test suite:
@@ -44,7 +131,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pending file handler tests (0% coverage)
 - Known issues with production environment mocking
 
-## [0.2.6] - 2024-02-18
+## [0.2.6] - 2025-02-18
 
 ### Added
 - Added clear configuration command: `devtool projects --clear`
@@ -66,7 +153,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed PyInstaller build process to include default configuration
 - Fixed configuration storage location in compiled executables
 
-## [0.2.5] - 2024-02-17
+## [0.2.5] - 2025-02-17
 
 ### Added
 - Added projects management system
@@ -91,7 +178,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved project detection efficiency
 - Updated menu structure to include projects management
 
-## [0.2.2] - 2024-02-17
+## [0.2.2] - 2025-02-17
 
 ### Added
 - Added support for arguments on the command line instead of just having a CLI
@@ -100,7 +187,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed the structure view on manual mode
 
-## [0.2.1] - 2024-02-16
+## [0.2.1] - 2025-02-16
 
 ### Added
 - Added build script for PyInstaller
@@ -108,7 +195,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replaced the use of PyFiglet for an simplified ASCII art banner
 
-## [0.2.0] - 2024-02-16
+## [0.2.0] - 2025-02-16
 
 ### Added
 - Added support for more frameworks and technologies
@@ -127,7 +214,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed the visualization of directory structure (After the CLI was reset before of generate the structure)
 - Other minor fixes and improvements
 
-## [0.1.0] - 2024-02-02
+## [0.1.0] - 2025-02-02
 
 ### Added
 - Base system of project detection
@@ -144,7 +231,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed the detection of nested projects
 - Fixed the manage of invalid routes
 
-## [0.1.0] - 2024-02-01
+## [0.1.0] - 2025-02-01
 
 ### Added
 - Initial project structure

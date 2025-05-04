@@ -39,7 +39,7 @@ class ProjectDetector:
         
         if not detected_types:
             self.logger.debug("Not detected any specific project type")
-            return 'otro'
+            return 'other'
         
         # Return the type with the highest priority
         for rule in sorted_rules:

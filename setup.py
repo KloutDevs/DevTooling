@@ -6,7 +6,7 @@ long_description = (this_directory / "README.MD").read_text(encoding="utf-8")
 
 setup(
     name="devtooling-cli",
-    version="0.2.9",
+    version="0.3.0",
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     include_package_data=True,

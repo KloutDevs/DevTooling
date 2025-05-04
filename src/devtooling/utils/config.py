@@ -4,7 +4,7 @@ import json
 from typing import Dict, Any
 import appdirs
 import shutil
-import importlib.resources as pkg_resources
+import importlib.resources as importlib_resources
 
 
 def get_config_path() -> str:
@@ -13,16 +13,20 @@ def get_config_path() -> str:
         config_dir = appdirs.user_config_dir("devtooling-cli", "KloutDevs")
         os.makedirs(config_dir, exist_ok=True)
         
-        meipass_config = os.path.join(sys._MEIPASS, 'config')
         rules_path = os.path.join(config_dir, 'detection_rules.json')
         projects_path = os.path.join(config_dir, 'projects.json')
         
         # Verify and create config files if they don't exist
         if not os.path.exists(rules_path):
-            shutil.copy2(
-                os.path.join(meipass_config, 'detection_rules.json'),
-                rules_path
-            )
+            try:
+                meipass_config = os.path.join(sys._MEIPASS, 'config')
+                source_rules = os.path.join(meipass_config, 'detection_rules.json')
+                shutil.copy2(source_rules, rules_path)
+            except (FileNotFoundError, OSError):
+                # Si falla la copia, intentar crear un archivo de reglas por defecto
+                default_rules = {"rules": []}
+                with open(rules_path, 'w', encoding='utf-8') as f:
+                    json.dump(default_rules, f, indent=2)
         
         if not os.path.exists(projects_path):
             with open(projects_path, 'w', encoding='utf-8') as f:
@@ -51,17 +55,17 @@ def load_config(filename: str, config_dir: str = None) -> Dict[str, Any]:
             with open(config_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         
-        # If doesn't exist, create a new one
+        # If doesn't exist, create a new one for projects.json
         if filename == 'projects.json':
             default_config = {"folders": [], "projects": {}}
             save_config(filename, default_config)
             return default_config
             
-        # For others files, try to load from the packaged resources
-        with pkg_resources.open_text('devtooling.config', filename, encoding='utf-8') as f:
+        # For other files, try to load from the packaged resources
+        with importlib_resources.open_text('devtooling.config', filename, encoding='utf-8') as f:
             return json.load(f)
             
-    except Exception as e:
+    except Exception:
         if filename == 'projects.json':
             default_config = {"folders": [], "projects": {}}
             save_config(filename, default_config)
@@ -87,4 +91,4 @@ def save_config(filename: str, data: Dict[str, Any], config_dir: str = None):
         json.dump(data, f, indent=2)
 
 def get_version() -> str:
-    return "0.2.9"
+    return "0.3.0"

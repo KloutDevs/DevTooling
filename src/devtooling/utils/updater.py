@@ -1,5 +1,6 @@
 import subprocess
-import pkg_resources
+from importlib.metadata import version
+
 import requests
 from typing import Optional, Tuple
 import logging
@@ -12,7 +13,7 @@ def check_latest_version() -> Tuple[str, Optional[str]]:
     Returns (current_version, latest_version) or (current_version, None) if can't check
     """
     try:
-        current = pkg_resources.get_distribution('devtooling-cli').version
+        current = version('devtooling-cli')
         response = requests.get('https://pypi.org/pypi/devtooling-cli/json')
         latest = response.json()['info']['version']
         return current, latest if latest != current else None
