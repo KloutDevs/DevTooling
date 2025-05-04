@@ -37,128 +37,136 @@ DevTooling CLI is an advanced command-line tool for project analysis and develop
 
 ## 🎯 Roadmap
 
-### Stage 1: Dependencies Scanning
+### Stage 1: Initial Development 
 
-- [ ] Detect outdated dependencies
+- [X] **Smart Project Detection**
+  - [X] Automatic project type detection
+  - [X] Support for multiple frameworks and technologies
+  - [X] System of detection based on configurable rules
 
-- [ ] Detect vulnerabilities
+- [X] **Project Management**
+  - [X] Watch folders for automatic project detection
+  - [X] Low-level and deep scanning modes
+  - [X] Quick project navigation
+  - [X] Project type classification
+  - [X] Project listing and organization
 
-- [ ] Analyze dependency sizes
-
-- [ ] Visualize dependency tree
-
-  
+- [X] **Visualization of Structure**
+  - [X] Interactive directory tree
+  - [X] Smart filtering of files and folders
+  - [X] Customizable visualization
 
 ### Stage 2: Integration with Git
 
-- [ ] View repository status
+- [ ] View repository status: View remaining changes, modified files, and untracked files.
 
-- [ ] Manage branches
+- [ ] Manage branches: Create, delete, and switch between branches.
 
-- [ ] View commit history
+- [ ] View commit history: Visualize commit history and filter by date, author, file, or message.
 
-- [ ] Generate .gitignore automatically
+- [ ] Generate .gitignore automatically: Generate a .gitignore file based on the current repository.
 
-- [ ] Contribution statistics
+- [ ] Contribution statistics: View fully detailed statistics about contributions to the repository.
 
-- [ ] Pull request statistics
+- [ ] Pull request statistics: View statistics about pull requests, including the number of open pull requests, closed pull requests, and merged pull requests.
 
-- [ ] Initialice a new repository tool
+- [ ] Initialice a new repository tool: Tool for creating new repositories.
 
-  
+### Stage 3: Dependencies Scanning
 
-### Stage 3: Code Analysis
+- [ ] Detect outdated dependencies: Detect outdated dependencies in the project and suggest updates.
 
-- [ ] Count lines per language
+- [ ] Detect vulnerabilities: Inspect the project for known vulnerabilities and suggest remediation. Integrated with tools like Snyk, OWASP, Dependency Check and GitHub Advisory Database.
 
-- [ ] Detect duplicated code
+- [ ] Analyze dependency sizes: Analyze the size of dependencies of the project and identify those that are large or unnecessary.
 
-- [ ] Analyze complexity
+- [ ] Visualize dependency tree: Visualize the dependency tree of the project and identify potential issues.
 
-- [ ] Project statistics
+### Stage 4: Code Analysis
 
-- [ ] Suggestions for improvements
+- [ ] Count lines per language: Statistics about lines of code per programming language.
 
-  
+- [ ] Detect duplicated code: Identify duplicated code in the project and suggest ways to optimize it.
 
-### Stage 4: Gestión de Scripts
+- [ ] Analyze complexity: Analyze the complexity of the project and identify potential issues.
 
-- [ ] Detect available scripts
+- [ ] Suggestions for improvements: Suggest improvements to the project based on standards and best practices.
 
-- [ ] Integrated execution
+- [ ] Call Graph Analysis: Search for a function, find all places where it is called, and display execution paths. Generate diagrams with stack traces showing possible call chains.
 
-- [ ] Customizable shortcuts
+### Stage 5: Management of Scripts
 
-- [ ] Concurrent task management
+- [ ] Detect available scripts: Identify available scripts in the project and suggest ways to execute them.
 
-  
+- [ ] Integrated execution: Execute scripts directly from the command line.
 
-### Stage 5: Development Tools
+- [ ] Customizable shortcuts: Create custom shortcuts for commonly used scripts.
 
-- [ ] Generate components from templates
-
-- [ ] Validate project structure
-
-- [ ] Manage configurations
-
-- [ ] Customizable templates
+- [ ] Concurrent task management: Monitor and manage multiple tasks running in parallel.
 
   
 
-### Stage 6: Docker Integration
+### Stage 6: Development Tools
 
-- [ ] Analyze configurations
+- [ ] Generate components from templates: Create new components from pre-defined templates.
 
-- [ ] Optimize Dockerfiles
+- [ ] Validate project structure: Check the adherence to conventions and best practices.
 
-- [ ] Containers management
+- [ ] Manage configurations: Edit and update common configuration files.
 
-- [ ] Validate best practices
-
-  
-
-### Stage 7: Testing and Quality
-
-- [ ] Run tests
-
-- [ ] Coverage reports
-
-- [ ] Integration with linters
-
-- [ ] Quality metrics
+- [ ] Customizable templates: Create and manage custom templates for project generation.
 
   
 
-### Stage 8: Documentación
+### Stage 7: Docker Integration
 
-- [ ] Automatic documentation generation
+- [ ] Analyze configurations: Detect and analyze configuration files for Docker.
 
-- [ ] Update README
+- [ ] Optimize Dockerfiles: Suggest improvements to improve the efficiency of Dockerfiles
 
-- [ ] Diagrams and visualizations
+- [ ] Containers management: Commands for managing Docker containers.
 
-- [ ] Documentation templates
+- [ ] Validate best practices: Ensure configurations meet safety and security standards.
+
+### Stage 8: Testing and Quality
+
+- [ ] Run tests: Integration with testing frameworks for run tests easily and generate reports.
+
+- [ ] Coverage reports: Show which parts of the code are covered by tests.
+
+- [ ] Integration with linters: Identify and fix issues with code quality.
+
+- [ ] Quality metrics: Resume of key metrics as bugs, vulnerabilities, and technical debts.
+
+
+### Stage 9: Documentation
+
+- [ ] Automatic documentation generation: Automatic generation of documentation from comments and code.
+
+- [ ] Update README: Facilitate the creation and maintenance of full README files.
+
+- [ ] Diagrams and visualizations: Generate diagrams and visualizations to better understand complex systems.
+
+- [ ] Documentation templates: Offer customizable templates of documentation for differents types of projects.
 
   
 
-### Stage 9: Gestión de Entorno
+### Stage 10: Manage of the environment
 
-- [ ] Environment management
+- [ ] Environment management:  Centralize and manage sensitive variables.
 
-- [ ] Configuration validation
+- [ ] Configuration validation: Check for consistency and detect inconsistencies.
 
-- [ ] Environment comparison
+- [ ] Environment comparison: Identify differences between configurations.
 
-- [ ] Configuration templates
+- [ ] Configuration templates: Facilitate the creation of standard configuration files.
 
-  
 
 ## 🛠️ Installation
 
-### Option 1: Using the Executable
+### Option 1: Using the Executable (Outdated)
 
 Download the latest release for your operating system:
-
 
 ```bash
 
@@ -174,7 +182,7 @@ chmod  +x  devtool  # Make it executable
 
 ```
 
-### Option 2: Using pip (Not available)
+### Option 2: Using pip
 
 ```bash
 
@@ -188,7 +196,7 @@ python  -m  venv  .venv
 
 source  .venv/bin/activate  # Linux/MacOS
 
-.venv\Scripts\activate  # Windows
+venv\Scripts\activate  # Windows
 
 pip  install  devtooling-cli
 
@@ -300,10 +308,63 @@ config/detection_rules.json
 
 The contributions are welcome. Please read the contribution guide before starting.
 
+##  Testing
+
+## 🧪 Testing
+
+### Coverage Status
+[![Coverage Status](https://img.shields.io/badge/Coverage-93%25-success)](https://github.com/KloutDevs/DevTooling)
+
+| Module          | Coverage | Status     |
+|----------------|----------|------------|
+| Core           | 98%      | ✅ Complete |
+| Features       | 93%      | ✅ Complete |
+| Utils          | ~65%     | 🟡 In Progress |
+
+### Test Suite Structure
+```python
+tests/
+├── core/
+│   └── test_detector.py       # Project type detection tests
+├── features/
+│   ├── test_structure.py      # Directory visualization tests
+│   └── test_projects.py       # Project management tests
+└── utils/
+    ├── test_config.py         # Configuration handling tests
+    └── test_logger.py         # Logging system tests
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run specific test module
+pytest tests/core/test_detector.py
+
+# Run with coverage report
+pytest --cov=devtooling tests/
+```
+
+### Test Documentation
+For detailed information about testing patterns and implementation, please refer to our [Testing Documentation](https://github.com/KloutDevs/DevTooling/blob/master/docs/TESTING.md).
+
+### Contributing to Tests
+
+When adding new features, please ensure:
+
+* Write tests for new functionality
+* Maintain or improve current coverage
+* Follow existing test patterns
+* Update test documentation
+
+For more details about contributing to tests, see our [Contributing Guidelines](https://github.com/KloutDevs/DevTooling/blob/master/docs/CONTRIBUTING.md).
+
 ## 📜 License
 
 MIT License.
 
 ## 🔄 Project Status  
 
-Developed with ❤️ by KloutDevs.
+Developed with ❤️ by [KloutDevs](https://github.com/KloutDevs).
