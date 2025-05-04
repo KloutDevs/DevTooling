@@ -2,6 +2,7 @@
 <img  src="https://i.imgur.com/OmX4SND.png" width="150px"/>
 </p>
 <p align="center">
+    <img src="https://img.shields.io/pypi/dm/devtooling-cli?label=Downloads&labelColor=gray&color=red" alt="Downloads">
     <img src="https://img.shields.io/pypi/v/devtooling-cli?label=Version&labelColor=gray&color=blue">
     <img src="https://img.shields.io/badge/licencia-MIT-green?style=flat">
     <img src="https://img.shields.io/badge/status-alpha-orange?style=flat">
